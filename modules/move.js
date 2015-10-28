@@ -1,20 +1,18 @@
-this.Atomic.module('$animation.move', ['$animation', '$curry'], function ($animation, $curry) {
+this.Atomic.module('$animation.move', ['$animation'], function ($animation) {
   
-  function move(element, delta, duration) {
-    
-    var to = 500;
+  function move(element, delta, from, to, duration) {
     
     $animation({
       delay: 10,
       duration: duration || 1000,
       delta: delta,
       step: function(delta) {
-        element.style.left = (to * delta) + "px";
+        element.style.left = (from + (to * delta)) + "px";
       }
     });
     
   }
 
-  return $curry(move);
+  return move;
   
 });
